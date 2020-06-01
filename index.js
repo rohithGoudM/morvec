@@ -4,15 +4,15 @@ const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth');
 const apiRoutes = require('./routes/api');
 const keys = require('./config/keys');
-const cookieSession = require('cookie-session')
-const passport = require('passport')
-const PORT  = process.env.PORT || 5000
-require('./models/User')
-require('./services/passport')
+const cookieSession = require('cookie-session');
+const passport = require('passport');
+const PORT  = process.env.PORT || 5000;
+require('./models/User');
+require('./services/passport');
 
 
 mongoose.connect(keys.mongoURI,()=>{
-    console.log("connected to db")
+    console.log("connected to db");
 })
 
 app.use(
