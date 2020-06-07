@@ -1,20 +1,10 @@
 import React,{useState,useEffect} from 'react';
 import {connect} from 'react-redux';
+import SearchBar from '../../../components/searchBar';
+import PlaceMovie from '../../../components/placeMovie';
 
 const Home = (props)=>{
-    // const [userdata,setUserData] = useState({
-    //     name:"loading",
-    //     picture:""
-    // })
-    // useEffect(()=>{
-    //     if(props.user){
-    //         setUserData({
-    //        name:props.user.username,
-    //        picture:props.user.picture
-    //    })
-    //     }
-       
-    // },[])
+
     switch(props.user){
       case null:
         return (  <div className="spinner-border" role="status">
@@ -24,14 +14,19 @@ const Home = (props)=>{
         props.history.push('/login')
       default:
           return (
-           <div>
-              <h1>here is your home </h1>
-              <div className="card" style={{margin:"10%",padding:"10px",textAlign:"center"}}>
-                 <h2>{props.user.username}</h2>
-                 <img className="circle" src={props.user.picture} alt=""/>  
+          <div className="container-fluid">
+              <div className="row py-3">
+                <div className="col-md-3 ">
+                  <SearchBar />
+                </div>
+                <div className="col-md-9">
+                  <PlaceMovie />
+                </div>
+
               </div>
+              
              
-           </div>
+          </div>
       )
     }
     

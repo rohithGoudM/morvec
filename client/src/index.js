@@ -7,11 +7,15 @@ import {Provider} from 'react-redux';
 import {createStore,combineReducers,compose,applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import {authReducer} from './reducers/authReducer';
+import {placeMovieInGenre} from './reducers/placeMovieInGenre';
+// import {fetchMoviesAction} from '../../actions/fetchMoviesAction';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const rootReducer = combineReducers({
-    auth:authReducer
+    auth:authReducer,
+    placement:placeMovieInGenre
+    // ratedMovie:fetchMoviesAction
 })
 const store = createStore(rootReducer,composeEnhancers(applyMiddleware(thunk)));
 

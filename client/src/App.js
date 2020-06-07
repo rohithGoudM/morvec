@@ -4,7 +4,7 @@ import Navbar from './components/navbar';
 import {BrowserRouter,Route} from 'react-router-dom';
 import Login from './views/pages/login';
 import Home from './views/pages/home';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
 import {fetchUserAction} from './actions/myaction';
 
 function App(props) {
