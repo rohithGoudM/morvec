@@ -9,7 +9,8 @@ import {fetchUserAction} from './actions/myaction';
 
 function App(props) {
   useEffect(()=>{
-     props.fetch_user()
+     props.fetch_user();
+     props.fetch_search();
   },[])
   return (
    <BrowserRouter>
@@ -22,7 +23,8 @@ function App(props) {
 
 const mapDispathToProps = (dispatch)=>{
   return {
-    fetch_user:()=>{dispatch(fetchUserAction())}
+    fetch_user:()=>{dispatch(fetchUserAction())},
+    fetch_search:()=>{dispatch({type:'default',payload:null})}
   }
 }
 

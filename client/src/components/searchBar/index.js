@@ -1,91 +1,79 @@
 import React,{useState,useEffect} from 'react';
 import {connect} from 'react-redux';
-import {fetchMoviesAction} from '../../actions/fetchMoviesAction';
 import {fetchUserAction} from '../../actions/myaction';
+import {fetchMovieResultsAction} from '../../actions/search';
+import {fetchUserResultsAction} from '../../actions/search';
+import {fetchMoviesFromGenreAction} from '../../actions/fetchMoviesFromGenreAction';
+import {selectUserAction} from '../../actions/selectUserAction';
 
 const SearchBar = (props)=>{
 
   const [search,setSearch] = useState('');
   const [searchResults,setSearchResults] = useState([]);
+  const [searchUsers,setSearchUsers] = useState([]);
   const NA = "./NA.jpg";
 
   const fetchSearchResults = (query)=>{
-    setSearch(query);
-    fetch('http://www.omdbapi.com/?s='+query.trim().split(" ").join('+')+'&apikey=9b1c32f2')
-    .then(res=>res.json())
-    .then(results=>{
-      if(results.Response == "True"){
-      setSearchResults(results["Search"].filter((it)=>{
-        return it.Type == "movie" || it.Type == "series";
-      }));
-      }else{
-        setSearchResults([{
-          Poster:NA,
-          Title:"Error",Year:results.Error
-        }]);
-      }
-    });
+    props.setSearch(query);
+    props.fetchMovieResults(query);
+    props.fetchUserResults(query);
+    props.setSelectedUserNull();
+    props.setPlaceMovieNull();
+  }
+
+  const getUser = (userID)=>{
+    if(userID != props.user._id){
+      props.fetch_user();
+      props.setSelectedUser(userID,props.user.seenMovies);
+      props.resetUserResults();
+      props.resetMovieResults();
+      props.resetQuery();
+    }
   }
 
   const getMovies = (rating, imdbID)=>{
-  if(!props.user.seenMovies.includes(imdbID)){
-    setSearchResults([{
-          Poster:NA,
-          Title:"Loading",Year:"..."
-        }]);
-    fetch('http://www.omdbapi.com/?i='+imdbID+'&apikey=9b1c32f2').then(res=>res.json())
-    .then((movieDetails)=>{
-      const movieType = movieDetails.Type == "movie" ? "movies" : "series";
-      const data = {
-        rating: rating.toString(),
-        genre: movieDetails.Genre.trim().split(", ").sort().join(", "),
-        title: movieDetails.Title,
-        imdbID: movieDetails.imdbID,
-        year: movieDetails.Year,
-        poster: movieDetails.Poster,
-        type: movieType
-      }
-      fetch('/movie/rating',{
-          method:"post",
-          headers:{
-            "Content-Type":"application/json"
-          },
-          body:JSON.stringify(data)
-        }).then(res=>res.json())
-        .then(result=>{
-          if(result.list){
-            const payload = {};
-            payload.movie = result.movie;
-            payload.moviesList = result.list;
-            payload.index = Math.floor(payload.moviesList.length/2);
-            payload.type = movieType;
-            payload.genre = movieDetails.Genre;
-            payload.rating = rating;
-            props.placeMovieInGenre(payload);
-          }
-          props.fetch_user();
-           setSearch('');
-           setSearchResults([]);
+    if(!props.user.seenMovies.includes(imdbID)){
+      props.setError({
+            Poster:"./NA.jpg",
+            Title:"Loading",Year:"..."
           });
-    });
-  }else{        
-    setSearchResults([{
-          Poster:NA,
-          Title:"Error",Year:"Seen Already"}]);
+      props.fetchMoviesFromGenre(rating,imdbID);
+      props.fetch_user();
+    }else{
+      props.setError({
+            Poster:"./NA.jpg",
+            Title:"Error",Year:"Seen Already"});
+    }
   }
-}
 
   return(
     <React.Fragment>
       <div className="form-group">
         <input 
         type="text" 
-        value={search.split("+").join(' ')}
-        onChange={(e)=>{fetchSearchResults(e.target.value); setSearchResults([])}}
+        value={props.search.query}
+        onChange={(e)=>{fetchSearchResults(e.target.value); props.setError({
+          Poster:"./NA.jpg",
+          Title:"Loading",Year:"..."
+        });}}
         className="form-control" placeholder="Search" aria-label="Username" 
         aria-describedby="basic-addon1"/>
       </div>
-      {searchResults.map((item, ind)=>{
+      {props.search.userResults.map((item, ind)=>{
+        return (
+          <div className="row" key={ind} onClick={()=>getUser(item._id)} >
+            <div className="d-inline-flex px-3 pb-3">
+            <img 
+            src={item.picture} 
+            style={{height:"96px", width:"auto"}} />
+            </div>
+            <div className="col">
+              <h4 className="my-auto">{item.name}</h4>
+            </div>
+          </div>
+          );
+      })}
+      {props.search.movieResults.map((item, ind)=>{
         return (
           <div className="row" key={ind} >
             <div className="d-inline-flex px-3 pb-3">
@@ -119,14 +107,25 @@ const SearchBar = (props)=>{
 
 const mapDispathToProps = (dispatch)=>{
   return {
-    placeMovieInGenre:(cool)=>{dispatch(fetchMoviesAction(cool))},
-    fetch_user:()=>{dispatch(fetchUserAction())}
+    setSearch:(query)=>{dispatch({type:'SET_SEARCH',payload:query})},
+    resetQuery:()=>{dispatch({type:'RESET_QUERY',payload:null})},
+    fetchMovieResults: (query)=>{dispatch(fetchMovieResultsAction(query))},
+    fetchUserResults: (query)=>{dispatch(fetchUserResultsAction(query))},
+    resetUserResults:()=>{dispatch({type:'RESET_USER_RESULTS',payload:null})},
+    resetMovieResults:()=>{dispatch({type:'RESET_MOVIE_RESULTS',payload:null})},
+    fetch_user:()=>{dispatch(fetchUserAction())},
+    setSelectedUser: (userID,seenMovies)=>{dispatch(selectUserAction(userID,seenMovies))},
+    setError: (err)=>{dispatch({type:'PUSH_ERROR_FROM_MOVIE',payload:err})},
+    fetchMoviesFromGenre:(rating, imdbID)=>{dispatch(fetchMoviesFromGenreAction(rating,imdbID))},
+    setSelectedUserNull:()=>{dispatch({type:'SET_SELECTED_USER_NULL',payload:null})},
+    setPlaceMovieNull:()=>{dispatch({type:'SET_PLACE_MOVIE_NULL',payload:null})}
   }
 }
 
 const mapStateToProps = (state)=>{
    return {
-       user:state.auth
+       user:state.auth,
+       search:state.search
    }
 }
 

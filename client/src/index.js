@@ -8,13 +8,17 @@ import {createStore,combineReducers,compose,applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import {authReducer} from './reducers/authReducer';
 import {placeMovieInGenre} from './reducers/placeMovieInGenre';
+import {selectedUserReducer} from './reducers/selectedUserReducer';
+import {searchReducer} from './reducers/searchReducer';
 // import {fetchMoviesAction} from '../../actions/fetchMoviesAction';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const rootReducer = combineReducers({
     auth:authReducer,
-    placement:placeMovieInGenre
+    placement:placeMovieInGenre,
+    selectedUser: selectedUserReducer,
+    search: searchReducer
     // ratedMovie:fetchMoviesAction
 })
 const store = createStore(rootReducer,composeEnhancers(applyMiddleware(thunk)));

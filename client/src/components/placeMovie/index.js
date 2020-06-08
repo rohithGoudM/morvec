@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import {connect} from 'react-redux';
+import {fetchUserAction} from '../../actions/myaction';
 
 const PlaceMovie = (props)=>{
 
@@ -48,15 +49,15 @@ const PlaceMovie = (props)=>{
               {!props.placeItem.moviesList.includes(props.placeItem.movie) && props.placeItem.moviesList.splice(props.placeItem.index,0,props.placeItem.movie) }
               {props.placeItem.moviesList.map((movie,ind)=>{
                   return(
-                  	<td key={ind} className="d-inline-flex pl-1 pr-0 py-0" >
+                  	<td key={ind} className="pl-1 pr-0 py-0" >
                     	<div className="card" style={{"width": "110px"}}>
-                          <img src={movie.poster} className="card-img-top" alt="..."/>
-                          <div className="card-body p-1">
-                            <h6 className="card-title m-0">{movie.title}</h6>
-                            <p className="card-text m-0">{movie.year}</p>
-                          </div>
+                        <img src={movie.poster} className="card-img-top" alt="..."/>
+                        <div className="card-body p-1">
+                          <h6 className="card-title m-0">{movie.title}</h6>
+                          <p className="card-text m-0">{movie.year}</p>
                         </div>
-                      </td>
+                      </div>
+                    </td>
                   )
                 })
               }                            
@@ -78,7 +79,7 @@ const PlaceMovie = (props)=>{
 const mapDispathToProps = (dispatch)=>{
   return {
     setIndex:(index)=>{dispatch({type:'SET_INDEX',payload:index})},
-    removePlacement:()=>{dispatch({type:'SET_NULL',payload:null})},
+    removePlacement:()=>{dispatch({type:'SET_PLACE_MOVIE_NULL',payload:null})},
     fetch_user:()=>{dispatch(fetchUserAction())}
   }
 }

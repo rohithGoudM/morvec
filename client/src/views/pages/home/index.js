@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import {connect} from 'react-redux';
 import SearchBar from '../../../components/searchBar';
 import PlaceMovie from '../../../components/placeMovie';
+import RecommendationStrip from '../../../components/recommendationStrip';
 
 const Home = (props)=>{
 
@@ -15,17 +16,15 @@ const Home = (props)=>{
       default:
           return (
           <div className="container-fluid">
-              <div className="row py-3">
-                <div className="col-md-3 ">
-                  <SearchBar />
-                </div>
-                <div className="col-md-9">
-                  <PlaceMovie />
-                </div>
-
+            <div className="row py-3">
+              <div className="col-md-3 ">
+                <SearchBar />
               </div>
-              
-             
+              <div className="col-md-9">
+                <PlaceMovie />
+                <RecommendationStrip />
+              </div>
+            </div>
           </div>
       )
     }

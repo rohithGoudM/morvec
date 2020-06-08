@@ -4,7 +4,7 @@ export const placeMovieInGenre = (state=null,action)=>{
         	return action.payload
         case 'SET_INDEX':
         	return {...state, index:action.payload}
-        case 'SET_NULL':
+        case 'SET_PLACE_MOVIE_NULL':
         	return null
     	default :
         	return state

@@ -5,6 +5,7 @@ const bodyParser  = require("body-parser");
 const authRoutes = require('./routes/auth');
 const apiRoutes = require('./routes/api');
 const movieRoutes = require('./routes/movie');
+const userRoutes = require('./routes/user');
 const keys = require('./config/keys');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
@@ -34,6 +35,7 @@ app.use(passport.session());
 app.use('/auth',authRoutes);
 app.use('/api',apiRoutes);
 app.use('/movie',movieRoutes);
+app.use('/user',userRoutes);
 // require('./routes/authRoute')(app)
 
 if(process.env.NODE_ENV === 'production'){ 
