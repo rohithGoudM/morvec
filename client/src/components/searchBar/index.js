@@ -32,6 +32,8 @@ const SearchBar = (props)=>{
   }
 
   const getMovies = (rating, imdbID)=>{
+      props.resetQuery();
+    props.fetch_user();
     if(!props.user.seenMovies.includes(imdbID)){
       props.setError({
             Poster:"./NA.jpg",
