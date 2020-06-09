@@ -21,7 +21,6 @@ userRouter.post('/search-users',(req,res)=>{
 })
 
 userRouter.post('/getUser',(req,res)=>{
-    console.log(req.body)
     Rating.find({userId:req.body.userID})
     .populate("movies")
     .populate("series")
