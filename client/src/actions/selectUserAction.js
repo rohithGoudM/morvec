@@ -1,4 +1,4 @@
-export const selectUserAction = (userID,seenMovies)=>{
+export const selectUserAction = (userID,selectedUserName,seenMovies)=>{
  return (dispatch)=>{
     fetch('/user/getUser',{
         method:"post",
@@ -54,7 +54,7 @@ export const selectUserAction = (userID,seenMovies)=>{
             !seenMovies.includes(series.imdbID) && tempSeries.push(series);
           })
         });
-        dispatch({type:'SET_SELECTED_USER',payload:{id:userID, movies:tempMovies, series:tempSeries}});
+        dispatch({type:'SET_SELECTED_USER',payload:{id:userID,name: selectedUserName, movies:tempMovies, series:tempSeries}});
       });
  }
 }

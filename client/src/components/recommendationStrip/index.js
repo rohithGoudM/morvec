@@ -28,7 +28,7 @@ const RecommendationStrip = (props)=>{
 			{props.selectedUser && (
 			<div>
 	      <div className="row mb-3">
-	      <h5>{props.user.name}'s Movies</h5>
+	      <h5 className="px-3">{props.selectedUser.name}'s Movies</h5>
 	        <div className=" table-responsive">                    
 	          <table className="table mb-1">
 	            <tbody>
@@ -64,7 +64,7 @@ const RecommendationStrip = (props)=>{
 	        </div>
 	      </div>
 	      <div className="row">
-	      <h5>{props.user.name}'s Series</h5>
+	      <h5 className="px-3">{props.selectedUser.name}'s Series</h5>
 	        <div className=" table-responsive">                    
 	          <table className="table mb-1">
 	            <tbody>
@@ -111,7 +111,6 @@ const mapDispathToProps = (dispatch)=>{
     removePlacement:()=>{dispatch({type:'SET_NULL',payload:null})},
     setError: (err)=>{dispatch({type:'PUSH_ERROR_FROM_MOVIE',payload:err})},
     fetch_user:()=>{dispatch(fetchUserAction())},
-    setSelectedUser: (userID,seenMovies)=>{dispatch(selectUserAction(userID,seenMovies))},
     fetchMoviesFromGenre:(rating, imdbID)=>{dispatch(fetchMoviesFromGenreAction(rating,imdbID))}
   }
 }
