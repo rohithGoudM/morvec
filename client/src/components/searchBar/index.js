@@ -63,7 +63,7 @@ const SearchBar = (props)=>{
       </div>
       {props.search.userResults.map((item, ind)=>{
         return (
-          <div className="row" key={ind} onClick={()=>getUser(item._id)} >
+          <a href="#"><div className="row" key={ind} onClick={()=>getUser(item._id)} >
             <div className="d-inline-flex px-3 pb-3">
             <img 
             src={item.picture} 
@@ -73,6 +73,7 @@ const SearchBar = (props)=>{
               <h4 className="my-auto">{item.name}</h4>
             </div>
           </div>
+          </a>
           );
       })}
       {props.search.movieResults.map((item, ind)=>{

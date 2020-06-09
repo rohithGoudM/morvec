@@ -27,6 +27,7 @@ const RecommendationStrip = (props)=>{
 			{props.selectedUser && (
 			<div>
 	      <div className="row mb-3">
+	      <h5>{props.user.name}'s Movies</h5>
 	        <div className=" table-responsive">                    
 	          <table className="table mb-1">
 	            <tbody>
@@ -62,6 +63,7 @@ const RecommendationStrip = (props)=>{
 	        </div>
 	      </div>
 	      <div className="row">
+	      <h5>{props.user.name}'s Series</h5>
 	        <div className=" table-responsive">                    
 	          <table className="table mb-1">
 	            <tbody>
