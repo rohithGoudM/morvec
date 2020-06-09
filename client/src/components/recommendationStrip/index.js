@@ -75,15 +75,15 @@ const RecommendationStrip = (props)=>{
 	                          <h6 className="card-title m-0">{series.title}</h6>
 	                          <p className="card-text m-0">{series.year}</p>
 								            <p className="mx-n1">
-								              <button type="button" onClick={()=>getMovies(1,item.imdbID,"series",ind)} 
+								              <button type="button" onClick={()=>getMovies(1,series.imdbID,"series",ind)} 
 								              className="btn btn-dark dropdown-toggle-split px-2 py-0">1</button>
-								              <button type="button" onClick={()=>getMovies(2,item.imdbID,"series",ind)} 
+								              <button type="button" onClick={()=>getMovies(2,series.imdbID,"series",ind)} 
 								              className="btn btn-dark dropdown-toggle-split px-2 py-0">2</button>
-								              <button type="button" onClick={()=>getMovies(3,item.imdbID,"series",ind)} 
+								              <button type="button" onClick={()=>getMovies(3,series.imdbID,"series",ind)} 
 								              className="btn btn-dark dropdown-toggle-split px-2 py-0">3</button>
-								              <button type="button" onClick={()=>getMovies(4,item.imdbID,"series",ind)} 
+								              <button type="button" onClick={()=>getMovies(4,series.imdbID,"series",ind)} 
 								              className="btn btn-dark dropdown-toggle-split px-2 py-0">4</button>
-								              <button type="button" onClick={()=>getMovies(5,item.imdbID,"series",ind)} 
+								              <button type="button" onClick={()=>getMovies(5,series.imdbID,"series",ind)} 
 								              className="btn btn-dark dropdown-toggle-split px-2 py-0">5</button>
 								              </p>
 	                        </div>
