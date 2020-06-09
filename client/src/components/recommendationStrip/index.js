@@ -7,11 +7,12 @@ import {selectUserAction} from '../../actions/selectUserAction';
 const RecommendationStrip = (props)=>{
 
   const getMovies = (rating, imdbID, type,index)=>{
+  	props.fetch_user();
     if(!props.user.seenMovies.includes(imdbID)){
-      props.setError({
-            Poster:"./NA.jpg",
-            Title:"Loading",Year:"..."
-          });
+      // props.setError({
+      //       Poster:"./NA.jpg",
+      //       Title:"Loading",Year:"..."
+      //     });
       props.fetchMoviesFromGenre(rating,imdbID);
       props.fetch_user();
       props.selectedUser[type].splice(index,1);

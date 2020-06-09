@@ -30,7 +30,7 @@ movieRouter.post('/rating',(req,res)=>{
 		.exec((err, existingRating)=>{
 			let ratingType = req.body.type;
 			if(existingRating && existingMovie){
-				if(existingRating[ratingType] == []){
+				if(existingRating[ratingType].length==0){
 					existingRating[ratingType].push(existingMovie.id);
 					existingRating.save().then((savedRating)=>{
 						req.user.seenMovies.push(req.body.imdbID);
@@ -44,7 +44,7 @@ movieRouter.post('/rating',(req,res)=>{
 			}else if(existingRating && !existingMovie){
 				new Movie(newMovie).save().then((movie)=>{
 					newRating[ratingType] = [movie.id];
-					if(existingRating[ratingType] == []){
+					if(existingRating[ratingType].length==0){
 						existingRating[ratingType].push(movie.id);
 						existingRating.save().then((savedRating)=>{
 							req.user.seenMovies.push(req.body.imdbID);
@@ -84,6 +84,8 @@ movieRouter.post('/placeMovie',(req,res)=>{
 		genre: req.body.genre,
 		rating: strRating
 	},(error,rating)=>{
+		console.log(rating);
+		console.log(req.body);
 		rating[req.body.type].set(req.body.index,req.body.movieID);
 		rating.save((err, savedRating)=>{
 			req.user.seenMovies.push(req.body.imdbID);

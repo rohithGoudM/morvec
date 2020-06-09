@@ -63,7 +63,7 @@ const SearchBar = (props)=>{
       </div>
       {props.search.userResults.map((item, ind)=>{
         return (
-          <a href="#"><div className="row" key={ind} onClick={()=>getUser(item._id)} >
+          <a href="#" key={ind}><div className="row" onClick={()=>getUser(item._id)} >
             <div className="d-inline-flex px-3 pb-3">
             <img 
             src={item.picture} 

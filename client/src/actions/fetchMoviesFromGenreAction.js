@@ -26,7 +26,7 @@ export const fetchMoviesFromGenreAction = (rating,imdbID)=>{
             payload.moviesList = result.list;
             payload.index = Math.floor(payload.moviesList.length/2);
             payload.type = movieType;
-            payload.genre = movieDetails.Genre;
+            payload.genre = data.genre;
             payload.rating = rating;
             dispatch({type:'PLACE_MOVIE',payload:payload});
             dispatch({type:'RESET_MOVIE_RESULTS',payload:null});
