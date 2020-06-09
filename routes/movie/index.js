@@ -84,8 +84,6 @@ movieRouter.post('/placeMovie',(req,res)=>{
 		genre: req.body.genre,
 		rating: strRating
 	},(error,rating)=>{
-		console.log(rating);
-		console.log(req.body);
 		rating[req.body.type].set(req.body.index,req.body.movieID);
 		rating.save((err, savedRating)=>{
 			req.user.seenMovies.push(req.body.imdbID);
