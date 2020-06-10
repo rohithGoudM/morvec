@@ -34,7 +34,7 @@ const PlaceMovie = (props)=>{
 		}).then(res=>res.json())
 		.then(result=>{
 			result && props.removePlacement();
-			props.fetch_user();
+      result && props.update_seenMovies(data.imdbID);
 		});
 	}
 
@@ -80,7 +80,8 @@ const mapDispathToProps = (dispatch)=>{
   return {
     setIndex:(index)=>{dispatch({type:'SET_INDEX',payload:index})},
     removePlacement:()=>{dispatch({type:'SET_PLACE_MOVIE_NULL',payload:null})},
-    fetch_user:()=>{dispatch(fetchUserAction())}
+    fetch_user:()=>{dispatch(fetchUserAction())},
+    update_seenMovies:(imdbID)=>{dispatch({type:'PUSH_IMDBID_TO_SEENMOVIES',payload:imdbID})}
   }
 }
 

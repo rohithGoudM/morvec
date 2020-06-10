@@ -32,15 +32,15 @@ const SearchBar = (props)=>{
   }
 
   const getMovies = (rating, imdbID)=>{
-      props.resetQuery();
-    props.fetch_user();
+    props.resetQuery();
+    // props.fetch_user();
     if(!props.user.seenMovies.includes(imdbID)){
       props.setError({
             Poster:"./NA.jpg",
             Title:"Loading",Year:"..."
           });
       props.fetchMoviesFromGenre(rating,imdbID);
-      props.fetch_user();
+      props.update_seenMovies(imdbID);
     }else{
       props.setError({
             Poster:"./NA.jpg",
@@ -121,7 +121,8 @@ const mapDispathToProps = (dispatch)=>{
     setError: (err)=>{dispatch({type:'PUSH_ERROR_FROM_MOVIE',payload:err})},
     fetchMoviesFromGenre:(rating, imdbID)=>{dispatch(fetchMoviesFromGenreAction(rating,imdbID))},
     setSelectedUserNull:()=>{dispatch({type:'SET_SELECTED_USER_NULL',payload:null})},
-    setPlaceMovieNull:()=>{dispatch({type:'SET_PLACE_MOVIE_NULL',payload:null})}
+    setPlaceMovieNull:()=>{dispatch({type:'SET_PLACE_MOVIE_NULL',payload:null})},
+    update_seenMovies:(imdbID)=>{dispatch({type:'PUSH_IMDBID_TO_SEENMOVIES',payload:imdbID})}
   }
 }
 
