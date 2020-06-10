@@ -67,7 +67,7 @@ const SearchBar = (props)=>{
             <div className="d-inline-flex px-3 pb-3">
             <img 
             src={item.picture} 
-            style={{height:"96px", width:"auto"}} />
+            style={{height:"46px", width:"auto"}} />
             </div>
             <div className="col">
               <h4 className="my-auto">{item.name}</h4>

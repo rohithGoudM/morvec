@@ -18,7 +18,12 @@ const Navbar = (props)=>{
               </div>
             )}
             {props.user === false && (
+              <React.Fragment>
+              <li className="nav-item active"><a className="nav-link" href="/privacyPolicy">Privacy Policy</a></li>
+              <li className="nav-item active"><a className="nav-link" href="/termsAndConditions">Terms And Conditions</a></li>
+              <li className="nav-item active"><a className="nav-link" href="mailto:mrohithg@gmail.com">Contact Us</a></li>
               <li className="nav-item active"><a className="nav-link" href="/auth/google">Signup</a></li>
+              </React.Fragment>
             )}
             {props.user && (
               <React.Fragment>
