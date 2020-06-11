@@ -6,36 +6,34 @@ const PlaceMovie = (props)=>{
 
 	const move = (direction)=>{
 		if(direction=="left" && props.placeItem.index>0){
-			props.placeItem.moviesList.splice(props.placeItem.index,1);
+			props.placeItem.rating[props.placeItem.type].splice(props.placeItem.index,1);
 			props.setIndex(props.placeItem.index-1);
 		}
-		if(direction=="right" && props.placeItem.index<props.placeItem.moviesList.length-1){
-			props.placeItem.moviesList.splice(props.placeItem.index,1);
+		if(direction=="right" && props.placeItem.index<props.placeItem.rating[props.placeItem.type].length-1){
+			props.placeItem.rating[props.placeItem.type].splice(props.placeItem.index,1);
 			props.setIndex(props.placeItem.index+1);
 		}
 	}
 
 	const done = ()=>{
-		const data = {
-			movieID: props.placeItem.movie._id,
-			genre: props.placeItem.genre,
-			type: props.placeItem.type,
-			rating: props.placeItem.rating,
-			index: props.placeItem.index,
-			imdbID: props.placeItem.movie.imdbID
-		}
-		
-		fetch('/movie/placeMovie',{
-			method: "post",
-			headers:{
-				"Content-Type":"application/json"
-			},
-			body:JSON.stringify(data)
-		}).then(res=>res.json())
-		.then(result=>{
-			result && props.removePlacement();
-      result && props.update_seenMovies(data.imdbID);
-		});
+
+    fetch('/rating/placeItem',{
+      method:"post",
+      headers:{
+        "Content-Type": "application/json"
+      },
+      body:JSON.stringify({
+        type:props.placeItem.type,
+        ratingID:props.placeItem.rating._id,
+        index:props.placeItem.index,
+        itemID:props.placeItem.movie._id,
+        imdbID: props.placeItem.movie.imdbID
+      })
+    }).then(res=>res.json())
+    .then(result=>{      
+      props.removePlacement();
+      props.update_seenMovies(props.placeItem.movie.imdbID);
+    });
 	}
 
 	return(
@@ -46,8 +44,9 @@ const PlaceMovie = (props)=>{
           <table className="table mb-1">
             <tbody>
               <tr>
-              {!props.placeItem.moviesList.includes(props.placeItem.movie) && props.placeItem.moviesList.splice(props.placeItem.index,0,props.placeItem.movie) }
-              {props.placeItem.moviesList.map((movie,ind)=>{
+              {!props.placeItem.rating[props.placeItem.type].includes(props.placeItem.movie) 
+                && props.placeItem.rating[props.placeItem.type].splice(props.placeItem.index,0,props.placeItem.movie) }
+              {props.placeItem.rating[props.placeItem.type].map((movie,ind)=>{
                   return(
                   	<td key={ind} className="pl-1 pr-0 py-0" >
                     	<div className="card" style={{"width": "110px"}}>

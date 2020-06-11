@@ -5,7 +5,9 @@ const bodyParser  = require("body-parser");
 const authRoutes = require('./routes/auth');
 const apiRoutes = require('./routes/api');
 const movieRoutes = require('./routes/movie');
+const itemRoutes = require('./routes/item');
 const userRoutes = require('./routes/user');
+const ratingRoutes = require('./routes/rating');
 const keys = require('./config/keys');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
@@ -36,6 +38,8 @@ app.use('/auth',authRoutes);
 app.use('/api',apiRoutes);
 app.use('/movie',movieRoutes);
 app.use('/user',userRoutes);
+app.use('/item',itemRoutes);
+app.use('/rating',ratingRoutes);
 // require('./routes/authRoute')(app)
 
 if(process.env.NODE_ENV === 'production'){ 

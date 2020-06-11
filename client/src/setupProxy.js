@@ -7,4 +7,7 @@ module.exports = function(app) {
   app.use(proxy('/api/*', { target: 'http://localhost:5000/' }));
   app.use(proxy('/movie/*', { target: 'http://localhost:5000/' }));
   app.use(proxy('/user/*', { target: 'http://localhost:5000/' }));
+  app.use(proxy('/rating/*', { target: 'http://localhost:5000/' }));
+  app.use(proxy('/item/movie/*', { target: 'http://localhost:5000/' }));
+  app.use(proxy('/item/series/*', { target: 'http://localhost:5000/' }));
 };

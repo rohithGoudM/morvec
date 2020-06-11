@@ -1,3 +1,10 @@
+let initailState = {
+    ratingInstance: null,
+    index: null,
+    type: null,
+    item: null
+}
+
 export const placeMovieInGenre = (state=null,action)=>{
 	switch(action.type){
     	case 'PLACE_MOVIE':

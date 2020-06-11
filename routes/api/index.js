@@ -1,5 +1,4 @@
 const { Router } = require("express");
-const passport = require('passport');
 const Rating = require('../../models/rating');
 const Movie = require('../../models/movie');
 

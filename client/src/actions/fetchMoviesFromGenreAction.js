@@ -12,7 +12,7 @@ export const fetchMoviesFromGenreAction = (rating,imdbID)=>{
         poster: movieDetails.Poster,
         type: movieType
       }
-      fetch('/movie/rating',{
+      fetch('/rating/findOrCreate',{
           method:"post",
           headers:{
             "Content-Type":"application/json"
@@ -23,11 +23,9 @@ export const fetchMoviesFromGenreAction = (rating,imdbID)=>{
           if(result.list){
             const payload = {};
             payload.movie = result.movie;
-            payload.moviesList = result.list;
-            payload.index = Math.floor(payload.moviesList.length/2);
+            payload.rating = result.list;
+            payload.index = Math.floor(payload.rating[movieType].length/2);
             payload.type = movieType;
-            payload.genre = data.genre;
-            payload.rating = rating;
             dispatch({type:'PLACE_MOVIE',payload:payload});
             dispatch({type:'RESET_MOVIE_RESULTS',payload:null});
           }else{

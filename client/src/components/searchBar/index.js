@@ -31,7 +31,7 @@ const SearchBar = (props)=>{
     }
   }
 
-  const getMovies = (rating, imdbID)=>{
+  const getMovies = (rating, imdbID, type)=>{
     props.resetQuery();
     // props.fetch_user();
     if(!props.user.seenMovies.includes(imdbID)){
@@ -39,7 +39,7 @@ const SearchBar = (props)=>{
             Poster:"./NA.jpg",
             Title:"Loading",Year:"..."
           });
-      props.fetchMoviesFromGenre(rating,imdbID);
+      props.fetchMoviesFromGenre(rating,imdbID, type);
       props.update_seenMovies(imdbID);
     }else{
       props.setError({
@@ -89,15 +89,15 @@ const SearchBar = (props)=>{
             <p className="text-muted m-0">{item.Year}</p>
             {item.Type && (
               <p className="mx-auto">
-                <button type="button" onClick={()=>getMovies(1,item.imdbID)} 
+                <button type="button" onClick={()=>getMovies(1,item.imdbID, item.Type)} 
                 className="btn btn-dark dropdown-toggle-split px-2 py-0">1</button>
-                <button type="button" onClick={()=>getMovies(2,item.imdbID)} 
+                <button type="button" onClick={()=>getMovies(2,item.imdbID, item.Type)} 
                 className="btn btn-dark dropdown-toggle-split px-2 py-0">2</button>
-                <button type="button" onClick={()=>getMovies(3,item.imdbID)} 
+                <button type="button" onClick={()=>getMovies(3,item.imdbID, item.Type)} 
                 className="btn btn-dark dropdown-toggle-split px-2 py-0">3</button>
-                <button type="button" onClick={()=>getMovies(4,item.imdbID)} 
+                <button type="button" onClick={()=>getMovies(4,item.imdbID, item.Type)} 
                 className="btn btn-dark dropdown-toggle-split px-2 py-0">4</button>
-                <button type="button" onClick={()=>getMovies(5,item.imdbID)} 
+                <button type="button" onClick={()=>getMovies(5,item.imdbID, item.Type)} 
                 className="btn btn-dark dropdown-toggle-split px-2 py-0">5</button>
                 </p>)}            </div>
           </div>
@@ -119,7 +119,7 @@ const mapDispathToProps = (dispatch)=>{
     fetch_user:()=>{dispatch(fetchUserAction())},
     setSelectedUser: (userID,selectedUserName,seenMovies)=>{dispatch(selectUserAction(userID,selectedUserName,seenMovies))},
     setError: (err)=>{dispatch({type:'PUSH_ERROR_FROM_MOVIE',payload:err})},
-    fetchMoviesFromGenre:(rating, imdbID)=>{dispatch(fetchMoviesFromGenreAction(rating,imdbID))},
+    fetchMoviesFromGenre:(rating, imdbID, type)=>{dispatch(fetchMoviesFromGenreAction(rating,imdbID,type))},
     setSelectedUserNull:()=>{dispatch({type:'SET_SELECTED_USER_NULL',payload:null})},
     setPlaceMovieNull:()=>{dispatch({type:'SET_PLACE_MOVIE_NULL',payload:null})},
     update_seenMovies:(imdbID)=>{dispatch({type:'PUSH_IMDBID_TO_SEENMOVIES',payload:imdbID})}

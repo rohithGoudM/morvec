@@ -1,4 +1,4 @@
-const initialState = {
+let initialState = {
 	query:'',
 	error:{},
 	movieResults:[],
