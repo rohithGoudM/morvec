@@ -27,8 +27,6 @@ ratingRouter.post('/findOrCreate',(req,res)=>{
 		})
 		.populate(req.body.type)
 		.exec((err, existingRating)=>{
-			console.log(existingRating);
-			console.log(req.body);
 			let ratingType = req.body.type;
 			if(existingRating && existingMovie){
 				if(existingRating[ratingType].length==0){
