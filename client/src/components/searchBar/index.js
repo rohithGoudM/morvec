@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import {fetchUserAction} from '../../actions/myaction';
 import {fetchMovieResultsAction} from '../../actions/search';
 import {fetchUserResultsAction} from '../../actions/search';
@@ -17,18 +18,7 @@ const SearchBar = (props)=>{
     props.setSearch(query);
     props.fetchMovieResults(query);
     props.fetchUserResults(query);
-    props.setSelectedUserNull();
     props.setPlaceMovieNull();
-  }
-
-  const getUser = (userID, selectedUserName)=>{
-    if(userID != props.user._id){
-      props.fetch_user();
-      props.setSelectedUser(userID,selectedUserName,props.user.seenMovies);
-      props.resetUserResults();
-      props.resetMovieResults();
-      props.resetQuery();
-    }
   }
 
   const getMovies = (rating, imdbID, type)=>{
@@ -63,7 +53,8 @@ const SearchBar = (props)=>{
       </div>
       {props.search.userResults.map((item, ind)=>{
         return (
-          <a href="#" key={ind}><div className="row" onClick={()=>getUser(item._id,item.name)} >
+          <Link  key={ind} to={item._id !== props.user._id?"/profile/"+item._id :"/"  }>
+          <div className="row">
             <div className="d-inline-flex px-3 pb-3">
             <img 
             src={item.picture} 
@@ -73,7 +64,7 @@ const SearchBar = (props)=>{
               <h4 className="my-auto">{item.name}</h4>
             </div>
           </div>
-          </a>
+          </Link>
           );
       })}
       {props.search.movieResults.map((item, ind)=>{
@@ -117,10 +108,8 @@ const mapDispathToProps = (dispatch)=>{
     resetUserResults:()=>{dispatch({type:'RESET_USER_RESULTS',payload:null})},
     resetMovieResults:()=>{dispatch({type:'RESET_MOVIE_RESULTS',payload:null})},
     fetch_user:()=>{dispatch(fetchUserAction())},
-    setSelectedUser: (userID,selectedUserName,seenMovies)=>{dispatch(selectUserAction(userID,selectedUserName,seenMovies))},
     setError: (err)=>{dispatch({type:'PUSH_ERROR_FROM_MOVIE',payload:err})},
     fetchMoviesFromGenre:(rating, imdbID, type)=>{dispatch(fetchMoviesFromGenreAction(rating,imdbID,type))},
-    setSelectedUserNull:()=>{dispatch({type:'SET_SELECTED_USER_NULL',payload:null})},
     setPlaceMovieNull:()=>{dispatch({type:'SET_PLACE_MOVIE_NULL',payload:null})},
     update_seenMovies:(imdbID)=>{dispatch({type:'PUSH_IMDBID_TO_SEENMOVIES',payload:imdbID})}
   }

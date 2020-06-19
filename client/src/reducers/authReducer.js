@@ -3,8 +3,9 @@ export const authReducer = (state=null,action)=>{
     	case 'GET_USER':
 			return action.payload || false
     	case 'PUSH_IMDBID_TO_SEENMOVIES':
-    		state.seenMovies.push(action.payload);
-        	return state
+    		let temp = state.seenMovies;
+    		temp.push(action.payload);
+        	return {...state, seenMovies:temp}
     	default :
         	return state
    }

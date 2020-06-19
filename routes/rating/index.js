@@ -27,15 +27,16 @@ ratingRouter.post('/findOrCreate',(req,res)=>{
 		})
 		.populate(req.body.type)
 		.exec((err, existingRating)=>{
+			console.log(existingRating);
+			console.log(req.body);
 			let ratingType = req.body.type;
 			if(existingRating && existingMovie){
 				if(existingRating[ratingType].length==0){
 					existingRating[ratingType].push(existingMovie.id);
-					existingRating.save().then((savedRating)=>{
-						req.user.seenMovies.push(req.body.imdbID);
-						req.user.save().then((savedUser)=>{
-							res.json({list:null});				
-						});
+					existingRating.save();
+					req.user.seenMovies.push(req.body.imdbID);
+					req.user.save().then((savedUser)=>{
+						res.json({list:null});				
 					});
 				}else{
 					res.json({list:existingRating,movie:existingMovie});
@@ -45,11 +46,10 @@ ratingRouter.post('/findOrCreate',(req,res)=>{
 					newRating[ratingType] = [movie.id];
 					if(existingRating[ratingType].length==0){
 						existingRating[ratingType].push(movie.id);
-						existingRating.save().then((savedRating)=>{
-							req.user.seenMovies.push(req.body.imdbID);
-							req.user.save().then((savedUser)=>{
-								res.json({list:null});				
-							});							
+						existingRating.save();
+						req.user.seenMovies.push(req.body.imdbID);
+						req.user.save().then((savedUser)=>{
+							res.json({list:null});				
 						});
 					}else{
 						res.json({list: existingRating, movie: movie})

@@ -7,7 +7,6 @@ import {selectUserAction} from '../../actions/selectUserAction';
 const RecommendationStrip = (props)=>{
 
   const getMovies = (rating, imdbID, type,index)=>{
-  	props.fetch_user();
     if(!props.user.seenMovies.includes(imdbID)){
       // props.setError({
       //       Poster:"./NA.jpg",
@@ -15,6 +14,7 @@ const RecommendationStrip = (props)=>{
       //     });
       props.fetchMoviesFromGenre(rating,imdbID);
       props.fetch_user();
+      props.update_seenMovies(imdbID);
       props.selectedUser[type].splice(index,1);
     }else{
       props.setError({
@@ -34,6 +34,7 @@ const RecommendationStrip = (props)=>{
 	            <tbody>
 	              <tr>
 	              {props.selectedUser.movies.map((movie, ind)=>{
+	              	console.log(movie)
 	              	return(
 	                  	<td key={movie.imdbID} className="pl-1 pr-0 py-0" >
 	                    	<div className="card" style={{"width": "110px"}}>
@@ -52,7 +53,7 @@ const RecommendationStrip = (props)=>{
 								              className="btn btn-dark dropdown-toggle-split px-2 py-0">4</button>
 								              <button type="button" onClick={()=>getMovies(5,movie.imdbID,"movies",ind)} 
 								              className="btn btn-dark dropdown-toggle-split px-2 py-0">5</button>
-								              </p>
+								             </p>
 	                        </div>
 	                      </div>
 	                    </td>
@@ -111,7 +112,8 @@ const mapDispathToProps = (dispatch)=>{
     removePlacement:()=>{dispatch({type:'SET_NULL',payload:null})},
     setError: (err)=>{dispatch({type:'PUSH_ERROR_FROM_MOVIE',payload:err})},
     fetch_user:()=>{dispatch(fetchUserAction())},
-    fetchMoviesFromGenre:(rating, imdbID)=>{dispatch(fetchMoviesFromGenreAction(rating,imdbID))}
+    fetchMoviesFromGenre:(rating, imdbID)=>{dispatch(fetchMoviesFromGenreAction(rating,imdbID))},
+    update_seenMovies:(imdbID)=>{dispatch({type:'PUSH_IMDBID_TO_SEENMOVIES',payload:imdbID})}
   }
 }
 

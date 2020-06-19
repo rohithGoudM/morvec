@@ -4,6 +4,7 @@ import Navbar from './components/navbar';
 import {BrowserRouter,Route} from 'react-router-dom';
 import Login from './views/pages/login';
 import Home from './views/pages/home';
+import UserProfile from './views/pages/userProfile';
 import PrivacyPolicy from './views/otherPages/privacyPolicy';
 import TermsAndConditions from './views/otherPages/termsAndConditions';
 import {connect} from 'react-redux';
@@ -18,6 +19,7 @@ function App(props) {
    <BrowserRouter>
      <Navbar />
      <Route exact path="/" component={Home} />
+     <Route path="/profile/:userID" component={UserProfile} />
      <Route path="/login" component={Login} />
      <Route path="/privacyPolicy" component={PrivacyPolicy} />
      <Route path="/termsAndConditions" component={TermsAndConditions} />
