@@ -4,6 +4,7 @@ import {fetchUserAction} from '../../../actions/myaction';
 import SearchBar from '../../../components/searchBar';
 import PlaceMovie from '../../../components/placeMovie';
 import RecommendationStrip from '../../../components/recommendationStrip';
+import AllUsers from '../../../components/allUsers';
 
 const Home = (props)=>{
 
@@ -31,6 +32,7 @@ const Home = (props)=>{
               </div>
               <div className="col-md-9">
                 <PlaceMovie />
+                <AllUsers />
               </div>
             </div>
           </div>

@@ -12,9 +12,19 @@ const authCheck = (req, res, next)=>{
     next();
   }else{
     //not logged in
-    res.redirect('/');
+    res.redirect('/login');
   }
 };
+
+userRouter.get('/allUsers',authCheck,(req,res)=>{
+    User.find({},(err,users)=>{
+        if(err){
+            res.json([]);
+        }else{
+            res.json(users);
+        }
+    })
+});
 
 userRouter.post('/search-users',(req,res)=>{
     let userPattern = new RegExp(req.body.query)

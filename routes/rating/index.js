@@ -34,7 +34,7 @@ ratingRouter.post('/findOrCreate',(req,res)=>{
 					existingRating.save();
 					req.user.seenMovies.push(req.body.imdbID);
 					req.user.save().then((savedUser)=>{
-						res.json({list:null});				
+						res.json({list:null});
 					});
 				}else{
 					res.json({list:existingRating,movie:existingMovie});
