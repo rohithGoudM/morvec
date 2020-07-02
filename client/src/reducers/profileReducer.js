@@ -4,6 +4,8 @@ export const profileReducer = (state=null,action)=>{
 		    return action.payload
     	case 'RESET_ITEMTYPE':
 		    return {...state, [action.payload]:null}
+    	case 'SET_PROFILE_NULL':
+        	return null
     	default :
         return state
    }

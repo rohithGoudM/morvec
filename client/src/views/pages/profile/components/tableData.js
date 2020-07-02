@@ -20,7 +20,8 @@ const TableData = (props)=>{
 
   let editMovie = (givenRating)=>{
     props.pullMovieFromGenre(props.ratingObj._id,movie._id);
-    props.resetItemType(itemType);
+    // PUSH
+    // props.resetItemType(itemType);
   }
 
 

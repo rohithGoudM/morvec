@@ -11,6 +11,13 @@ import ScrollRecs from './components/scrollRecs';
 
 const Profile = (props)=>{
 
+  useEffect(()=>{
+    props.fetch_user();
+    props.resetUserResults();
+    props.resetMovieResults();
+    props.resetQuery();
+  },[]);
+
   switch(props.user){
     case null:
       return (
@@ -21,13 +28,8 @@ const Profile = (props)=>{
     case false:
       props.history.push('/login')
     default:
-      useEffect(()=>{
-        props.fetch_user();
-        props.setProfile(props.user._id);
-        props.resetUserResults();
-        props.resetMovieResults();
-        props.resetQuery();
-      },[]);
+
+      !props.profile && props.setProfile(props.user._id);
 
       return (
       <div className="container-fluid">

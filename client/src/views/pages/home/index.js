@@ -10,6 +10,7 @@ const Home = (props)=>{
 
   useEffect(()=>{
     props.fetch_user();
+    props.resetProfile();
     props.resetUserProfile();
     props.resetUserResults();
     props.resetMovieResults();
@@ -48,6 +49,7 @@ const mapDispathToProps = (dispatch)=>{
     resetUserResults:()=>{dispatch({type:'RESET_USER_RESULTS',payload:null})},
     resetMovieResults:()=>{dispatch({type:'RESET_MOVIE_RESULTS',payload:null})},
     fetch_user:()=>{dispatch(fetchUserAction())},
+    resetProfile: ()=>{dispatch({type:'SET_PROFILE_NULL',payload:null})},
     resetUserProfile: ()=>{dispatch({type:'SET_USER_PROFILE_NULL',payload:null})}
   }
 }
