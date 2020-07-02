@@ -24,6 +24,10 @@ const AllUsers = (props)=>{
 
 	return(
 		<div>
+    {allUsers.length == 0 && (
+      <div className="spinner-border" role="status">
+        <span className="sr-only">Loading...</span>
+      </div>)}
 		{allUsers.length > 0 && (
       <div className="row">
         <div className=" table-responsive">                    
@@ -33,7 +37,7 @@ const AllUsers = (props)=>{
               {allUsers.map((user,ind)=>{
                   return(
                   	<td key={ind} className="pl-1 pr-0 py-0" >
-                      <Link to={user._id !== props.user._id?"/profile/"+user._id :"/"  }>
+                      <Link to={user._id !== props.user._id?"/profile/"+user._id :"/profile"  }>
                     	<div className="card" style={{"width": "110px"}}>
                         <img src={user.picture} className="card-img-top" alt="..."/>
                         <div className="card-body p-1">

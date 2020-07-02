@@ -20,7 +20,7 @@ const InnerLoopForItems = (props)=>{
 	// 	return !props.user.seenMovies.includes(mv.imdbID);
 	// })
 	.map((movie,ind)=>
-		<TableData key={ind} ratingObj={rating} movie={movie} />
+		<TableData key={ind} ratingObj={rating} movie={movie} type={itemType} />
 		);
 	return(
 		<React.Fragment>

@@ -1,4 +1,4 @@
-export const userProfileAction = (userID)=>{
+export const setProfileAction = (userID)=>{
  return (dispatch)=>{
     fetch('/user/getUserProfile',{
         method:"post",
@@ -42,24 +42,9 @@ export const userProfileAction = (userID)=>{
             }
           }
         });
-        let tempMovies = [];
-        let tempSeries = [];
-        movies.map((rating)=>{
-          rating.movies.map((movie)=>{
-            !result.seenMovies.includes(movie.imdbID) && tempMovies.push(movie);
-          })
-        });
-        series.map((rating)=>{
-          rating.series.map((series)=>{
-            !result.seenMovies.includes(series.imdbID) && tempSeries.push(series);
-          })
-        });
-        // dispatch({type:'SET_SELECTED_USER',payload:{id:userID,name: selectedUserName, movies:tempMovies, series:tempSeries}});
-        dispatch({type:'SET_USER_PROFILE',payload:{user:result.user, 
-          moviesSort:movies, 
-          seriesSort:series,
-          movies:tempMovies,
-          series:tempSeries
+        dispatch({type:'SET_PROFILE',payload:{
+          movies,
+          series
         }});
       });
  }

@@ -11,6 +11,7 @@ import {placeMovieInGenre} from './reducers/placeMovieInGenre';
 import {selectedUserReducer} from './reducers/selectedUserReducer';
 import {searchReducer} from './reducers/searchReducer';
 import {userProfileReducer} from './reducers/userProfileReducer';
+import {profileReducer} from './reducers/profileReducer';
 // import {loadingReducer} from './reducers/loadingReducer';
 // import {fetchMoviesAction} from '../../actions/fetchMoviesAction';
 
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
     placement:placeMovieInGenre,
     selectedUser: selectedUserReducer,
     search: searchReducer,
-    userProfile: userProfileReducer
+    userProfile: userProfileReducer,
+    profile: profileReducer
     // loading: loadingReducer
 })
 const store = createStore(rootReducer,composeEnhancers(applyMiddleware(thunk)));

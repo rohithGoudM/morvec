@@ -16,28 +16,29 @@ const Home = (props)=>{
     props.resetQuery();
   },[])
 
-    switch(props.user){
-      case null:
-        return (  <div className="spinner-border" role="status">
-                    <span className="sr-only">Loading...</span>
-                  </div>)
-      case false:
-        props.history.push('/login')
-      default:
-          return (
-          <div className="container-fluid">
-            <div className="row py-3">
-              <div className="col-md-3 ">
-                <SearchBar />
-              </div>
-              <div className="col-md-9">
-                <PlaceMovie />
-                <AllUsers />
-              </div>
+  switch(props.user){
+    case null:
+      return ( 
+        <div className="spinner-border" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>)
+    case false:
+      props.history.push('/login')
+    default:
+      return (
+        <div className="container-fluid">
+          <div className="row py-3">
+            <div className="col-md-3 ">
+              <SearchBar />
+            </div>
+            <div className="col-md-9">
+              <PlaceMovie />
+              <AllUsers />
             </div>
           </div>
+        </div>
       )
-    }
+  }
     
 }
 
