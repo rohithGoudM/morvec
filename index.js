@@ -16,7 +16,11 @@ const PORT  = process.env.PORT || 5000;
 require('./services/passport');
 
 
-mongoose.connect(keys.mongoURI,()=>{
+mongoose.connect(keys.mongoURI,{ 
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+},()=>{
     console.log("connected to db");
 })
 
