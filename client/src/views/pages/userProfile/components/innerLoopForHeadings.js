@@ -15,7 +15,9 @@ function InnerLoopForHeadings(props){
 			<td className="pl-1 pr-0 py-0">{rating.rating}&#9733; {rating.genre}</td>
 		)
 	}else if(itemSpan>1){
-		return(<td colSpan={itemSpan.toString()} className="pl-1 pr-0 py-0"  >{rating.rating}&#9733; {rating.genre}</td>)
+		return(<td colSpan={itemSpan.toString()} className="pl-1 pr-0 py-0"  >
+				{rating.rating}&#9733; {rating.genre}
+			</td>)
 	}else{
 		return null;
 	}

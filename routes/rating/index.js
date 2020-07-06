@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const Rating = require('../../models/rating');
 const Movie = require('../../models/movie');
+const User = require('../../models/user');
 
 const ratingRouter = Router();
 
@@ -81,6 +82,30 @@ ratingRouter.post('/placeItem',(req,res)=>{
 		req.user.seenMovies.push(req.body.imdbID);
 		req.user.save();
 		res.json({result:true});
+	});
+});
+
+ratingRouter.post('/pullItem',(req,res)=>{
+	let doneThings = req.body.itemType == "books" ? "readBooks" : "seenMovies";
+	Rating.findByIdAndUpdate(req.body.ratingID,{
+			$pull:{[req.body.itemType]:req.body.itemID}
+		},{
+			new:true
+		},
+		(err, rating)=>{
+		if(err){
+			return null;
+		}
+		User.findByIdAndUpdate(req.user._id,{
+			$pull:{[doneThings]:req.body.imdbID}
+		},{
+			new:true
+		},(error, currentUser)=>{
+			if(error){
+				return null;
+			}
+			res.json({rating,currentUser});
+		});
 	});
 });
 

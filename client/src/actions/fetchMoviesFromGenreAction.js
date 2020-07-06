@@ -2,6 +2,8 @@ export const fetchMoviesFromGenreAction = (rating,imdbID)=>{
    return (dispatch)=>{
    	fetch('http://www.omdbapi.com/?i='+imdbID+'&apikey=9b1c32f2').then(res=>res.json())
     .then((movieDetails)=>{
+      console.log(movieDetails)
+      if(!movieDetails.Genre || movieDetails.Response=="False"){return null;}
       const movieType = movieDetails.Type == "movie" ? "movies" : "series";
       const data = {
         rating: rating.toString(),
