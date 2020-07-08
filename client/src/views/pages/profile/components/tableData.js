@@ -25,7 +25,7 @@ const TableData = (props)=>{
     //pull out imdbID from seenMovies.
   }
 
-  if(props.user.seenMovies.includes(movie.imdbID)){
+  // if(props.user.seenMovies.includes(movie.imdbID)){
     return (
       <td key={movie.imdbID} className="pl-1 pr-0 py-0" >
         <div className="card" style={{"width": "110px"}}>
@@ -44,9 +44,9 @@ const TableData = (props)=>{
         </div>
       </td>
     )
-  }else{
-    return null;
-  }
+  // }else{
+  //   return null;
+  // }
 }
 
 const mapStateToProps = (state)=>{

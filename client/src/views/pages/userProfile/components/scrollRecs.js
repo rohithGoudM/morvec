@@ -1,8 +1,5 @@
-import React,{useState,useEffect} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
-import {useParams} from 'react-router-dom';
-import {fetchUserAction} from '../../../../actions/myaction';
-import {userProfileAction} from '../../../../actions/userProfileAction';
 import OuterLoopForItems from './outerLoopForItems';
 
 const ScrollRecs = (props)=>{

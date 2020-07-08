@@ -1,15 +1,15 @@
-import React,{useState} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {fetchUserAction} from '../../actions/myaction';
 
 const PlaceMovie = (props)=>{
 
 	const move = (direction)=>{
-		if(direction=="left" && props.placeItem.index>0){
+		if(direction==="left" && props.placeItem.index>0){
 			props.placeItem.rating[props.placeItem.type].splice(props.placeItem.index,1);
 			props.setIndex(props.placeItem.index-1);
 		}
-		if(direction=="right" && props.placeItem.index<props.placeItem.rating[props.placeItem.type].length-1){
+		if(direction==="right" && props.placeItem.index<props.placeItem.rating[props.placeItem.type].length-1){
 			props.placeItem.rating[props.placeItem.type].splice(props.placeItem.index,1);
 			props.setIndex(props.placeItem.index+1);
 		}

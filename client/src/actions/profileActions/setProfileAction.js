@@ -16,7 +16,7 @@ export const setProfileAction = (userID)=>{
           if(a.rating < b.rating){
             return 1;
           }else{
-            if(a.rating==b.rating){
+            if(a.rating===b.rating){
               if(a.movies.length<b.movies.length){
                 return 1;
               }else{
@@ -31,7 +31,7 @@ export const setProfileAction = (userID)=>{
           if(a.rating < b.rating){
             return 1;
           }else{
-            if(a.rating==b.rating){
+            if(a.rating===b.rating){
               if(a.series.length<b.series.length){
                 return 1;
               }else{

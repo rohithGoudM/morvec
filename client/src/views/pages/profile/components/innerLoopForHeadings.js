@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 
 function InnerLoopForHeadings(props){
@@ -10,7 +10,7 @@ function InnerLoopForHeadings(props){
 	})
 	.length;
 	
-	if(itemSpan==1){
+	if(itemSpan===1){
 		return(
 			<td className="pl-1 pr-0 py-0">{rating.rating}&#9733; {rating.genre}</td>
 		)

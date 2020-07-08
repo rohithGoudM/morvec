@@ -11,10 +11,10 @@ import TermsAndConditions from './views/otherPages/termsAndConditions';
 import {connect} from 'react-redux';
 import {fetchUserAction} from './actions/myaction';
 
-function App(props) {
+function App({fetch_user, fetch_search}) {
   useEffect(()=>{
-     props.fetch_user();
-     props.fetch_search();
+    fetch_user();
+    fetch_search();
   },[])
   return (
    <BrowserRouter>

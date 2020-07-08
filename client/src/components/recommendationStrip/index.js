@@ -1,8 +1,8 @@
-import React,{useState} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {fetchMoviesFromGenreAction} from '../../actions/fetchMoviesFromGenreAction';
 import {fetchUserAction} from '../../actions/myaction';
-import {selectUserAction} from '../../actions/selectUserAction';
+// import {selectUserAction} from '../../actions/selectUserAction';
 
 const RecommendationStrip = (props)=>{
 

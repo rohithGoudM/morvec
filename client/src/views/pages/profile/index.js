@@ -1,12 +1,12 @@
-import React,{useState,useEffect} from 'react';
+import React,{useEffect} from 'react';
 import {connect} from 'react-redux';
-import {Link,useParams} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {fetchUserAction} from '../../../actions/myaction';
 import {setProfileAction} from '../../../actions/profileActions';
-import SearchBar from '../../../components/searchBar';
+// import SearchBar from '../../../components/searchBar';
 import PlaceMovie from '../../../components/placeMovie';
-import RecommendationStrip from '../../../components/recommendationStrip';
-import InnerLoopForItems from './components/innerLoopForItems';
+// import RecommendationStrip from '../../../components/recommendationStrip';
+// import InnerLoopForItems from './components/innerLoopForItems';
 import ScrollRecs from './components/scrollRecs';
 
 const Profile = (props)=>{
@@ -41,6 +41,7 @@ const Profile = (props)=>{
 		            <div className="d-inline-flex px-3 pb-3">
 		            <img 
 		            src={props.user.picture} 
+                alt="./NA.jpg"
 		            style={{height:"46px", width:"auto"}} />
 		            </div>
 		            <div className="col">

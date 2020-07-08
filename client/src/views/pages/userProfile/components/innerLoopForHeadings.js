@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 
 function InnerLoopForHeadings(props){
@@ -14,7 +14,7 @@ function InnerLoopForHeadings(props){
 		return !props.user.seenMovies.includes(mv.imdbID);
 	}).length;
 	
-	if(recs >0 && itemSpan==1){
+	if(recs >0 && itemSpan===1){
 		return(
 			<td className="pl-1 pr-0 py-0">{rating.rating}&#9733; {rating.genre}</td>
 		)

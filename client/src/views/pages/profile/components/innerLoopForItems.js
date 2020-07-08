@@ -16,9 +16,9 @@ const InnerLoopForItems = (props)=>{
 	let itemType = props.type;
   let opacity = "0.6";
 	let itemsInRating = rating[itemType]
- //  .filter((mv)=>{
-	// 	return !props.user.seenMovies.includes(mv.imdbID);
-	// })
+  .filter((mv)=>{
+		return props.user.seenMovies.includes(mv.imdbID);
+	})
 	.map((movie,ind)=>
 		<TableData key={ind} ratingObj={rating} movie={movie} type={itemType} />
 		);
