@@ -15,6 +15,10 @@ const InnerLoopForItems = (props)=>{
 	let rating = props.rating;
 	let itemType = props.type;
   let opacity = "0.6";
+  let recs = rating[itemType]
+  .filter((mv)=>{
+    return !props.user.seenMovies.includes(mv.imdbID);
+  }).length;
 	let itemsInRating = rating[itemType]
  //  .filter((mv)=>{
 	// 	return !props.user.seenMovies.includes(mv.imdbID);
@@ -22,11 +26,16 @@ const InnerLoopForItems = (props)=>{
 	.map((movie,ind)=>
 		<TableData key={ind} ratingObj={rating} movie={movie} />
 		);
-	return(
-		<React.Fragment>
-			{itemsInRating}
-		</React.Fragment>
-		)
+  if(recs>0){
+    return(
+      <React.Fragment>
+        {itemsInRating}
+      </React.Fragment>
+      )    
+  }else{
+    return null;
+  }
+
 }
 
 const mapDispathToProps = (dispatch)=>{
