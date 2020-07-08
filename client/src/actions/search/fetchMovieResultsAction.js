@@ -1,7 +1,7 @@
 export const fetchMovieResultsAction = (query)=>{
    return (dispatch)=>{
 
-   	fetch('http://www.omdbapi.com/?s='+query.trim().split(" ").join('+')+'&apikey=9b1c32f2')
+   	fetch('http://www.omdbapi.com/?s='+query.trim().split(" ").join('+')+'&apikey=b36aa754')
     .then(res=>res.json())
     .then(results=>{
       if(results.Response == "True"){
