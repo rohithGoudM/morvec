@@ -6,7 +6,7 @@ function InnerLoopForHeadings(props){
 	let itemType = props.type;
 	let itemSpan = rating[itemType]
 	.filter((mv)=>{
-		return props.user.seenMovies.includes(mv.imdbID);
+		return props.user[itemType].includes(mv.imdbID);
 	})
 	.length;
 	

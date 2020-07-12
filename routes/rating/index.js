@@ -33,7 +33,7 @@ ratingRouter.post('/findOrCreate',(req,res)=>{
 				if(existingRating[ratingType].length==0){
 					existingRating[ratingType].push(existingMovie.id);
 					existingRating.save();
-					req.user.seenMovies.push(req.body.imdbID);
+					req.user[ratingType].push(req.body.imdbID);
 					req.user.save().then((savedUser)=>{
 						res.json({list:null});
 					});
@@ -46,7 +46,7 @@ ratingRouter.post('/findOrCreate',(req,res)=>{
 					if(existingRating[ratingType].length==0){
 						existingRating[ratingType].push(movie.id);
 						existingRating.save();
-						req.user.seenMovies.push(req.body.imdbID);
+						req.user[ratingType].push(req.body.imdbID);
 						req.user.save().then((savedUser)=>{
 							res.json({list:null});				
 						});
@@ -57,7 +57,7 @@ ratingRouter.post('/findOrCreate',(req,res)=>{
 			}else if(!existingRating && existingMovie){
 				newRating[ratingType] = [existingMovie.id];
 				new Rating(newRating).save();
-				req.user.seenMovies.push(req.body.imdbID);
+				req.user[ratingType].push(req.body.imdbID);
 				req.user.save().then((savedUser)=>{
 					res.json({list:null});				
 				});
@@ -66,7 +66,7 @@ ratingRouter.post('/findOrCreate',(req,res)=>{
 					newRating[ratingType] = [movie.id];
 					new Rating(newRating).save();
 				});
-				req.user.seenMovies.push(req.body.imdbID);
+				req.user[ratingType].push(req.body.imdbID);
 				req.user.save().then((savedUser)=>{
 					res.json({list:null});				
 				});
@@ -79,7 +79,8 @@ ratingRouter.post('/placeItem',(req,res)=>{
 	Rating.findById(req.body.ratingID,(err, rating)=>{
 		rating[req.body.type].splice(req.body.index,0,req.body.itemID);
 		rating.save();
-		req.user.seenMovies.push(req.body.imdbID);
+		// req.user.seenMovies.push(req.body.imdbID);
+		req.user[req.body.type].push(req.body.imdbID);
 		req.user.save();
 		res.json({result:true});
 	});
@@ -97,7 +98,7 @@ ratingRouter.post('/pullItem',(req,res)=>{
 			return null;
 		}
 		User.findByIdAndUpdate(req.user._id,{
-			$pull:{[doneThings]:req.body.imdbID}
+			$pull:{[req.body.itemType]:req.body.imdbID}
 		},{
 			new:true
 		},(error, currentUser)=>{

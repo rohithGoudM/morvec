@@ -15,7 +15,7 @@ export const pullItemFromRating = (ratingID,itemID,itemType,imdbID)=>{
     .then(result => {
       if(result){
         itemType === "movies" || "series" 
-          ? dispatch({type:'SET_SEENMOVIES',payload:result.currentUser.seenMovies})
+          ? dispatch({type:'SET_SEENITEMS',payload:{itemType,itemIDs:result.currentUser[itemType]}})
           : console.log(false);
         // dispatch({type:'PULL_ITEM', payload: {ratingID, itemID, itemType}});
       }

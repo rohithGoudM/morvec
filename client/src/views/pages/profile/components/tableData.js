@@ -25,7 +25,7 @@ const TableData = (props)=>{
     //pull out imdbID from seenMovies.
   }
 
-  // if(props.user.seenMovies.includes(movie.imdbID)){
+  // if(props.user[itemType].includes(movie.imdbID)){
     return (
       <td key={movie.imdbID} className="pl-1 pr-0 py-0" >
         <div className="card" style={{"width": "110px"}}>
