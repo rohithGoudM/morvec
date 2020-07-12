@@ -49,9 +49,12 @@ const Profile = (props)=>{
 		            </div>
 		          </div>
 		          <div className="row px-3 pb-3" >
-		          	<Link to="/">
-        					<button type="button" className="btn btn-dark">Home</button>
-        				</Link>
+		          	<div><Link to="/"><button type="button" className="btn btn-dark">Home</button>
+        				</Link></div>
+                <div className="text-right mx-auto">
+                {props.profile &&(<h6>Movies: {props.user.movies.length}</h6>)}
+                {props.profile &&(<h6>Series: {props.user.series.length}</h6>)}
+                </div>
 		          </div>
 		          </React.Fragment>
 		         )}
@@ -59,7 +62,7 @@ const Profile = (props)=>{
           <div className="col-md-9">
             <PlaceMovie />
             <h5>Movies</h5>
-            {props.profile && !props.profile.movies && (
+            {!props.profile /*&& !props.profile.movies*/ && (
               <div className="spinner-border" role="status">
                 <span className="sr-only">Loading...</span>
               </div>

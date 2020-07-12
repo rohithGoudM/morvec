@@ -51,6 +51,10 @@ const UserProfile = (props)=>{
   		          	<Link to="/">
           					<button type="button" className="btn btn-dark">Home</button>
           				</Link>
+                  <div className="text-right mx-auto">
+                    {props.userProfile &&(<h6>Total Movies: {props.userProfile.user.movies.length}</h6>)}
+                    {props.userProfile &&(<h6>Total Series: {props.userProfile.user.series.length}</h6>)}
+                  </div>
   		          </div>
   		          </React.Fragment>
   		         )}
