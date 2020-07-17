@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {fetchUserAction} from '../../actions/myaction';
+import {fetchBookResultsAction} from '../../actions/search';
 import {fetchMovieResultsAction} from '../../actions/search';
 import {fetchUserResultsAction} from '../../actions/search';
 import {fetchMoviesFromGenreAction} from '../../actions/fetchMoviesFromGenreAction';
@@ -16,6 +17,7 @@ const SearchBar = (props)=>{
 
   const fetchSearchResults = (query)=>{
     props.setSearch(query);
+    props.fetchBookResults(query);
     props.fetchMovieResults(query);
     props.fetchUserResults(query);
     props.setPlaceMovieNull();
@@ -105,6 +107,7 @@ const mapDispathToProps = (dispatch)=>{
   return {
     setSearch:(query)=>{dispatch({type:'SET_SEARCH',payload:query})},
     resetQuery:()=>{dispatch({type:'RESET_QUERY',payload:null})},
+    fetchBookResults: (query)=>{dispatch(fetchBookResultsAction(query))},
     fetchMovieResults: (query)=>{dispatch(fetchMovieResultsAction(query))},
     fetchUserResults: (query)=>{dispatch(fetchUserResultsAction(query))},
     resetUserResults:()=>{dispatch({type:'RESET_USER_RESULTS',payload:null})},

@@ -2,7 +2,8 @@ let initialState = {
 	query:'',
 	error:{},
 	movieResults:[],
-	userResults:[]
+	userResults:[],
+    bookResults:[]
 }
 
 export const searchReducer = (state=initialState,action)=>{

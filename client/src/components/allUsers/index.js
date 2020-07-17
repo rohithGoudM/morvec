@@ -12,7 +12,7 @@ const AllUsers = (props)=>{
     .then(res=>res.json())
     .then(result=>{
       result.sort((a,b)=>{
-        if(a.name > b.name){
+        if(a.name.toLowerCase() > b.name.toLowerCase()){
           return 1;
         }else{
           return -1;

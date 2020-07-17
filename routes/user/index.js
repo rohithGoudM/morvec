@@ -3,6 +3,7 @@ const passport = require('passport');
 const Rating = require('../../models/rating');
 const Movie = require('../../models/movie');
 const User = require('../../models/user');
+const fetch = require('node-fetch');
 
 const userRouter = Router();
 
@@ -24,6 +25,19 @@ userRouter.get('/allUsers',authCheck,(req,res)=>{
             res.json(users);
         }
     })
+});
+
+userRouter.post('/search-books',(req,res)=>{
+    // let userPattern = new RegExp(req.body.query);
+    let query = req.body.query;
+    fetch('https://www.goodreads.com/search/index.xml?key=5aokLhCcpj3nGbzqTCrqIw&q='+query.trim().split(" ").join('+'))
+      // .then(res=>res.json())
+      .then(searchResult=>{
+        console.log(searchResult);
+        console.log("searchResult");
+        res.json({ntg:"ntg"});
+        //  dispatch({type: 'SET_BOOK_RESULTS', payload: null});
+      });
 });
 
 userRouter.post('/search-users',(req,res)=>{
