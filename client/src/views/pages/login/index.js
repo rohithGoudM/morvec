@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Login = ()=>{
-
+    const revs=[];
     const reviews = [
         {
             img:"./alc.jpg",
@@ -32,7 +32,7 @@ const Login = ()=>{
                 </p>
 
             </div>
-            {reviews.map((er,ind)=>{
+            {revs.map((er,ind)=>{
                 return (
                     <div key={ind} className="row p-5">
                         <div className="col-lg-2 my-5">

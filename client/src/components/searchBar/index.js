@@ -28,7 +28,7 @@ const SearchBar = (props)=>{
     console.log(itemType);
     props.resetQuery();
     // props.fetch_user();
-    if(!props.user[itemType].includes(imdbID)){
+    if(!props.user[itemType].includes(imdbID) && !props.user[itemType+"NotRecommended"].includes(imdbID)){
       props.setError({
             Poster:"./NA.jpg",
             Title:"Loading",Year:"..."

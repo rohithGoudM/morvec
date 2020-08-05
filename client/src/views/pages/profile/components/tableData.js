@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react';
 import {connect} from 'react-redux';
 import {fetchMoviesFromGenreAction} from '../../../../actions/fetchMoviesFromGenreAction';
 import {pullItemFromRating} from '../../../../actions/profileActions';
+import {pushItemToNotRecommended} from '../../../../actions/profileActions';
 // import EditRating from './editRating';
 // import EditRating from '../../../../components/editRating';
 
@@ -19,6 +20,12 @@ const TableData = (props)=>{
   let movie = props.movie;
   let currentRating = props.ratingObj.rating;
 
+  const notRecommended=()=>{
+    props.pullMovieFromGenreAndSeenmovies(props.ratingObj._id, movie._id, itemType, movie.imdbID);
+    props.pushItemToNotRecommended(movie._id, itemType, movie.imdbID);
+
+  }
+
   const deleteItemRating = ()=>{
     props.pullMovieFromGenreAndSeenmovies(props.ratingObj._id, movie._id, itemType, movie.imdbID);
     //pull out the item rating.
@@ -34,10 +41,16 @@ const TableData = (props)=>{
             <h6 className="card-title m-0">{movie.title}</h6>
             <div>
               <p className="card-text m-0 float-left">{movie.year}</p>
+              <div className="float-right">
+              <button type="button" onClick={()=>notRecommended()}
+              className="btn btn-dark dropdown-toggle-split px-1 py-0 ">
+                &#128711;
+              </button>
               <button type="button" onClick={()=>deleteItemRating()} 
-              className="btn btn-danger dropdown-toggle-split px-2 py-0 float-right">
+              className="btn btn-danger dropdown-toggle-split px-1 py-0">
                 <i className='far fa-trash-alt'></i>
               </button>
+            </div>
             </div>
             
           </div>
@@ -59,7 +72,7 @@ const mapStateToProps = (state)=>{
 const mapDispathToProps = (dispatch)=>{
   return {
     pullMovieFromGenreAndSeenmovies:(rating, movieID, it, imdbID)=>{dispatch(pullItemFromRating(rating, movieID, it, imdbID))},
-    resetItemType:(itemType)=>{dispatch({type:'RESET_ITEMTYPE',payload:itemType})}
+    pushItemToNotRecommended:( movieID, it, imdbID)=>{dispatch(pushItemToNotRecommended(movieID, it, imdbID))}
   }
 }
 

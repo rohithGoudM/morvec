@@ -87,7 +87,6 @@ ratingRouter.post('/placeItem',(req,res)=>{
 });
 
 ratingRouter.post('/pullItem',(req,res)=>{
-	let doneThings = req.body.itemType == "books" ? "readBooks" : "seenMovies";
 	Rating.findByIdAndUpdate(req.body.ratingID,{
 			$pull:{[req.body.itemType]:req.body.itemID}
 		},{
@@ -107,6 +106,24 @@ ratingRouter.post('/pullItem',(req,res)=>{
 			}
 			res.json({rating,currentUser});
 		});
+	});
+});
+
+
+ratingRouter.post('/pushItemToNotRecommended',(req,res)=>{
+
+	User.findByIdAndUpdate(req.user._id,{
+		$push:{
+			[req.body.itemType+"NotRecommended"]:req.body.imdbID,
+			[req.body.itemType+"NotRecommendedObjectIDs"]:req.body.itemID
+		}
+	},{
+		new:true
+	},(error, currentUser)=>{
+		if(error){
+			return null;
+		}
+		res.json({currentUser});
 	});
 });
 

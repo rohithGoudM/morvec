@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {fetchMoviesFromGenreAction} from '../../../../actions/fetchMoviesFromGenreAction';
+import {pullItemFromRating} from '../../../../actions/profileActions';
+import {pushItemToNotRecommended} from '../../../../actions/profileActions';
 // import EditRating from './editRating';
 // import EditRating from '../../../../components/editRating';
 
@@ -22,7 +24,12 @@ const TableData = (props)=>{
   }
 
 	let movie = props.movie;
-	if(props.user[itemType].includes(movie.imdbID)){
+
+  const notRecommended=()=>{
+    props.pushItemToNotRecommended(movie._id, itemType, movie.imdbID);
+  }
+
+	if(props.user[itemType].includes(movie.imdbID) || props.user[itemType+"NotRecommended"].includes(movie.imdbID) ){
 		return (
 			<td key={movie.imdbID} className="pl-1 pr-0 py-0" style={{opacity: "0.6" }}  >
 		    	<div className="card" style={{"width": "110px"}}>
@@ -53,6 +60,8 @@ const TableData = (props)=>{
 		            className="btn btn-dark dropdown-toggle-split px-2 py-0">4</button>
 		            <button type="button" onClick={()=>rateMovies(5,movie.imdbID)} 
 		            className="btn btn-dark dropdown-toggle-split px-2 py-0">5</button>
+		            <button type="button" onClick={()=>notRecommended()}
+		            className="btn btn-danger dropdown-toggle-split px-1 py-0 float-right">&#128711;</button>
 		          </p>
 		        </div>
 		      </div>
@@ -71,7 +80,9 @@ const mapStateToProps = (state)=>{
 const mapDispathToProps = (dispatch)=>{
   return {
     update_seenItems:(imdbID,itemType)=>{dispatch({type:'PUSH_IMDBID_TO_SEENITEMS',payload:{imdbID,itemType}})},
-    fetchMoviesFromGenre:(rating, imdbID)=>{dispatch(fetchMoviesFromGenreAction(rating,imdbID))}
+    fetchMoviesFromGenre:(rating, imdbID)=>{dispatch(fetchMoviesFromGenreAction(rating,imdbID))},
+    pullMovieFromGenreAndSeenmovies:(rating, movieID, it, imdbID)=>{dispatch(pullItemFromRating(rating, movieID, it, imdbID))},
+    pushItemToNotRecommended:(movieID, it, imdbID)=>{dispatch(pushItemToNotRecommended(movieID, it, imdbID))}
   }
 }
 

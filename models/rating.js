@@ -7,7 +7,9 @@ const ratingSchema = new Schema({
 	rating:String,
 	userId:{type:ObjectId,ref:"User"},
 	movies:[{type:ObjectId,ref:"Movie"}],
-	series:[{type:ObjectId,ref:"Movie"}]
+	moviesNotRecommended:[{type:ObjectId,ref:"Movie"}],
+	series:[{type:ObjectId,ref:"Movie"}],
+	seriesNotRecommended:[{type:ObjectId,ref:"Movie"}]
 });
 
 module.exports = mongoose.model("Rating",ratingSchema);

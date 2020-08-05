@@ -33,8 +33,8 @@ userRouter.post('/search-books',(req,res)=>{
     fetch('https://www.goodreads.com/search/index.xml?key=5aokLhCcpj3nGbzqTCrqIw&q='+query.trim().split(" ").join('+'))
       // .then(res=>res.json())
       .then(searchResult=>{
-        console.log(searchResult);
-        console.log("searchResult");
+        // console.log(searchResult);
+        // console.log("searchResult");
         res.json({ntg:"ntg"});
         //  dispatch({type: 'SET_BOOK_RESULTS', payload: null});
       });

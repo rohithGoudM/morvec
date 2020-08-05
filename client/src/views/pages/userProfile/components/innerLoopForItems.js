@@ -9,7 +9,7 @@ const InnerLoopForItems = (props)=>{
 	let itemType = props.type;
   let recs = rating[itemType]
   .filter((mv)=>{
-    return !props.user[itemType].includes(mv.imdbID);
+    return !(props.user[itemType].includes(mv.imdbID) || props.user[itemType+"NotRecommended"].includes(mv.imdbID));
   }).length;
 	let itemsInRating = rating[itemType]
  //  .filter((mv)=>{

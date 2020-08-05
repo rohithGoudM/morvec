@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const {ObjectId} = mongoose.Schema.Types;
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -10,9 +11,15 @@ const userSchema = new Schema({
     createdAt: {type:Date, default: Date.now},
     lastLogin: {type:Date, default: Date.now},
 	seenMovies:[String],
-	movies:[String],
-	series:[String],
-	books: [String]
+    movies:[String],
+	moviesNotRecommended:[String],
+    moviesNotRecommendedObjectIDs:[{type:ObjectId,ref:"Movie"}],
+    series:[String],
+	seriesNotRecommended:[String],
+    seriesNotRecommendedObjectIDs:[{type:ObjectId,ref:"Movie"}],
+    books: [String],
+	booksNotRecommended: [String]
+    // booksNotRecommendedObjectIDs:[{type:ObjectId,ref:"Book"}],
 	// smt: Set,
 	// gtg: Map
 });

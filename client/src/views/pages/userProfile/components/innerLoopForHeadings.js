@@ -11,7 +11,7 @@ function InnerLoopForHeadings(props){
 	.length;
 	let recs = rating[itemType]
 	.filter((mv)=>{
-		return !props.user[itemType].includes(mv.imdbID);
+		return !(props.user[itemType].includes(mv.imdbID) || props.user[itemType+"NotRecommended"].includes(mv.imdbID));
 	}).length;
 	
 	if(recs >0 && itemSpan===1){
