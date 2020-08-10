@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactPlayer from 'react-player';
 
 const Login = ()=>{
     const revs=[];
@@ -31,6 +32,9 @@ const Login = ()=>{
                     <a href="/auth/google" className="btn btn-dark my-2">Sign In with Google</a>
                 </p>
 
+            </div>
+            <div className="col-md-8 offset-md-2 p-0 ">
+            <ReactPlayer url="https://www.youtube.com/watch?v=seD8pfo-SpE" controls={true} width="100%" />
             </div>
             {revs.map((er,ind)=>{
                 return (
