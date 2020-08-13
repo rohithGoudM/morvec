@@ -44,7 +44,7 @@ const TableData = (props)=>{
               <div className="float-right">
               <button type="button" onClick={()=>notRecommended()}
               className="btn btn-dark dropdown-toggle-split px-1 py-0 ">
-                &#128683;
+                &#128711;
               </button>
               <button type="button" onClick={()=>deleteItemRating()} 
               className="btn btn-danger dropdown-toggle-split px-1 py-0">
