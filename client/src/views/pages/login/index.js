@@ -34,7 +34,7 @@ const Login = ()=>{
 
             </div>
             <div className="col-md-8 offset-md-2 p-0 ">
-            <ReactPlayer url="https://www.youtube.com/watch?v=seD8pfo-SpE" controls={true} width="100%" />
+            <ReactPlayer url="https://www.youtube.com/watch?v=UvfE5yGMs54" controls={true} width="100%" />
             </div>
             {revs.map((er,ind)=>{
                 return (
