@@ -19,7 +19,19 @@ const Login = ()=>{
             review:"A missing girl. One of the wealthiest families in Sweden. A journalist on the wrong side of the law. A twenty-four-year-old pierced and tattooed genius hacker. And of course, a flower for every year. Larsson’s first in the Millenium series. Readers definitely knew it was a thriller. The author did not shy away from suspense or dramatic plot twists. “I had fun reading it because it was so intense.” says Ethan, a member of the ISZL Book Club. These scenes had such an impact because of the characters Larsson created. They were vivid and complex people, a balance of earnestness and wit. One of the criticisms for this book was how long it took for readers to get into the story. Larsson spends a lot of time establishing setting and context. For such a complex plot and character list, this is understandable and maybe even unavoidable. “But then it picked up, and I enjoyed it.” says Emily, another member. There are themes of grief, passion and the nature of crime threaded throughout this debut novel. Readers were constantly guessing of whether or not Harriet will be found, dead or alive. The author has left a striking legacy. It is a must-read for all crime fiction fans. At its core is the true essence of detection – working as a team for the common good.",
             link:"https://amzn.to/3dPeVYL"
         }
-    ]
+    ];
+
+    const fetchit = ()=>{
+        fetch('http://Livelearning-env.eba-muyzbq7g.ap-south-1.elasticbeanstalk.com/get'/*, {mode:'cors'}*/,{
+            method:"get", 
+            headers:{
+                "Authorization": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqYXZhaW51c2UiLCJleHAiOjE1OTg4NzAyNTMsImlhdCI6MTU5ODg1MjI1M30.STrqjsAGt-RpTo02DHRh6-s52OjZlVT4rkSlsZ5igCe1uKC4rTCqNuEFSPvJ6T2mV35-srDd2623oFCd_u357A",
+                "Content-Type": "application/json"
+            }
+        }).then(result=>{      
+            console.log(result);
+        });
+    }
 
     return(
         <div className="container" >
@@ -33,8 +45,11 @@ const Login = ()=>{
                 </p>
 
             </div>
+            <div className="col-md-3" onClick={()=>fetchit()}>
+                <img src="/alc.jpg" width="100" />
+            </div>
             <div className="col-md-8 offset-md-2 p-0 ">
-            <ReactPlayer url="https://www.youtube.com/watch?v=UvfE5yGMs54" controls={true} width="100%" />
+                <ReactPlayer url="https://www.youtube.com/watch?v=UvfE5yGMs54" controls={true} width="100%" />
             </div>
             {revs.map((er,ind)=>{
                 return (
