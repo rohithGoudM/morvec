@@ -45,9 +45,6 @@ const Login = ()=>{
                 </p>
 
             </div>
-            <div className="col-md-3" onClick={()=>fetchit()}>
-                <img src="/alc.jpg" width="100" />
-            </div>
             <div className="col-md-8 offset-md-2 p-0 ">
                 <ReactPlayer url="https://www.youtube.com/watch?v=UvfE5yGMs54" controls={true} width="100%" />
             </div>
