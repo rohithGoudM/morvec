@@ -17,12 +17,10 @@ require('./services/passport');
 
 
 mongoose.connect(keys.mongoURI,{ 
-    useFindAndModify: false,
+    // useFindAndModify: false,
     useUnifiedTopology: true,
     useNewUrlParser: true
-},()=>{
-    console.log("connected to db");
-})
+}).catch(error => console.log(error));
 
 
 app.use(bodyParser.urlencoded({extended: true}));

@@ -27,6 +27,7 @@ const Navbar = (props)=>{
             )}
             {props.user && (
               <React.Fragment>
+                <li className="nav-item "><Link className="nav-link" to="/profile">Profile</Link></li>
                 <li className="nav-item "><Link className="nav-link" to="/">Home</Link></li>
                 <li className="nav-item"><a className="nav-link" href="/auth/logout">Logout</a></li>
               </React.Fragment>
