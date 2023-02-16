@@ -1,7 +1,7 @@
 export const fetchMovieResultsAction = (query)=>{
    return (dispatch)=>{
     if(query.trim().length <= 3){
-      fetch('http://www.omdbapi.com/?t='+query.trim().split(" ").join('+')+'&apikey=b36aa754')
+      fetch('http://www.omdbapi.com/?t='+query.trim().split(" ").join('+')+'&apikey=5e67a871')
       .then(ress=>ress.json())
       .then(result=>{
         if(result.Response == "True" && (result.Type == "movie" || result.Type == "series")){
@@ -14,7 +14,7 @@ export const fetchMovieResultsAction = (query)=>{
         }
       })
     }else{
-     	fetch('http://www.omdbapi.com/?s='+query.trim().split(" ").join('+')+'&apikey=b36aa754')
+     	fetch('http://www.omdbapi.com/?s='+query.trim().split(" ").join('+')+'&apikey=5e67a871')
       .then(res=>res.json())
       .then(results=>{
         if(results.Response == "True"){
@@ -23,7 +23,7 @@ export const fetchMovieResultsAction = (query)=>{
           })});
         }else{
           if(results.Error == "Too many results."){
-            fetch('http://www.omdbapi.com/?t='+query.trim().split(" ").join('+')+'&apikey=b36aa754')
+            fetch('http://www.omdbapi.com/?t='+query.trim().split(" ").join('+')+'&apikey=5e67a871')
             .then(ress=>ress.json())
             .then(result=>{
               if(result.Response == "True" && (result.Type == "movie" || result.Type == "series")){
