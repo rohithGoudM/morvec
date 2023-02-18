@@ -14,5 +14,6 @@ module.exports={
     apiKey:'5e67a871',
     cookieKey:'asdf',
     FACEBOOK_APP_ID:process.env.FACEBOOK_APP_ID,
-    FACEBOOK_APP_SECRET:process.env.FACEBOOK_APP_SECRET
+    FACEBOOK_APP_SECRET:process.env.FACEBOOK_APP_SECRET,
+    redirect_uri: redirect_uri
 }
