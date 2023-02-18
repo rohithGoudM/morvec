@@ -1,5 +1,6 @@
 // const dbname = process.env.NODE_ENV === 'production' ? 'morvec' : 'dev';
 const dbname = process.env.NODE_ENV === 'production' ? 'morvec' : 'morvec';
+const redirect_uri = process.env.NODE_ENV === 'production' ? 'https://morvec.in/auth/google/callback' : 'https://morvec.in/auth/google/callback'
 
 const mongoURI = 'mongodb://rohith:rohith@mvcomcluster-shard-00-00.rqhsh.mongodb.net:27017,mvcomcluster-shard-00-01.rqhsh.mongodb.net:27017,mvcomcluster-shard-00-02.rqhsh.mongodb.net:27017/'+dbname+'?ssl=true&replicaSet=MvcomCluster-shard-0&authSource=admin&retryWrites=true&w=majority';
 
