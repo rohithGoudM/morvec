@@ -1,6 +1,6 @@
 export const fetchMoviesFromGenreAction = (rating,imdbID)=>{
    return (dispatch)=>{
-   	fetch('http://www.omdbapi.com/?i='+imdbID+'&apikey=5e67a871').then(res=>res.json())
+   	fetch('https://www.omdbapi.com/?i='+imdbID+'&apikey=5e67a871').then(res=>res.json())
     .then((movieDetails)=>{
       console.log(movieDetails)
       if(!movieDetails.Genre || movieDetails.Response=="False"){return null;}
